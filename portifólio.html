@@ -1,219 +1,793 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio - Pérola</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfólio | Pérola Fontana Corchog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --bg-light: #fdfdfd;
-      --bg-dark: #1e1e1e;
-      --text-light: #333;
-      --text-dark: #fff;
-      --accent: #0077b6; /* azul elegante */
-      --secondary: #ffb400; /* dourado para detalhes */
+      --bg:   #09090e;
+      --bg2:  #0f0f16;
+      --card: #13131a;
+      --border: rgba(255,255,255,0.07);
+      --text: #ddddf0;
+      --muted: #6e6e8e;
+      --js:  #f7df1e;
+      --py:  #4dabf7;
+      --ads: #2dd4bf;
+      --fig: #a78bfa;
     }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-light);
-      color: var(--text-light);
-      transition: background 0.3s, color 0.3s;
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #252535; border-radius: 4px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 60px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 40px;
+      backdrop-filter: blur(20px);
+      background: rgba(9,9,14,0.7);
+      border-bottom: 1px solid var(--border);
     }
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: linear-gradient(135deg, #ff00bf, #ff85e0);
-      color: #fff;
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1rem; color: white;
     }
-    header img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid #fff;
-      margin-bottom: 1rem;
+    .nav-logo em { font-style: normal; color: var(--fig); }
+    .nav-pills { display: flex; gap: 4px; }
+    .nav-pills a {
+      text-decoration: none; font-size: 0.78rem; font-weight: 500;
+      color: var(--muted); padding: 6px 14px; border-radius: 8px;
+      transition: all 0.2s;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    .nav-pills a:hover,
+    .nav-pills a.active { color: white; background: rgba(255,255,255,0.08); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 80px 24px 60px;
+      position: relative;
     }
-    header p {
-      font-size: 1.2rem;
-      color: #f0f0f0;
+    .hero-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 55% at 50% 45%, rgba(167,139,250,0.07) 0%, transparent 65%);
     }
-    input[type="text"] {
-      padding: 0.7rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      width: 50%;
+    .hero-dots {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 75%);
     }
-    button {
-      padding: 0.7rem 1.2rem;
-      border: none;
-      border-radius: 5px;
-      background: var(--accent);
-      color: #fff;
-      cursor: pointer;
-      font-weight: bold;
+    .hero-inner { position: relative; z-index: 2; max-width: 680px; }
+
+    .avatar-ring {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--fig), var(--ads));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px; font-size: 2.4rem;
+      box-shadow: 0 0 0 6px rgba(167,139,250,0.12), 0 0 40px rgba(167,139,250,0.2);
+      animation: float 4s ease-in-out infinite;
     }
-    main {
-      max-width: 1000px;
-      margin: auto;
-      padding: 1rem;
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 0.75rem; color: var(--muted);
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 22px;
+    }
+    .dot-live {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--ads);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700; color: white;
+      letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(120deg, var(--fig) 0%, var(--ads) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1rem; color: var(--muted); line-height: 1.7;
+      max-width: 480px; margin: 0 auto 36px;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+
+    .area-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+    .chip {
+      display: flex; align-items: center; gap: 7px;
+      padding: 7px 16px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 500; border: 1px solid;
+      cursor: pointer; transition: all 0.25s; text-decoration: none;
+    }
+    .chip:hover { transform: translateY(-2px); filter: brightness(1.2); }
+    .chip-js  { color:var(--js);  border-color:rgba(247,223,30,0.25);  background:rgba(247,223,30,0.06); }
+    .chip-py  { color:var(--py);  border-color:rgba(77,171,247,0.25);  background:rgba(77,171,247,0.06); }
+    .chip-ads { color:var(--ads); border-color:rgba(45,212,191,0.25);  background:rgba(45,212,191,0.06); }
+    .chip-fig { color:var(--fig); border-color:rgba(167,139,250,0.25); background:rgba(167,139,250,0.06); }
+
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--muted); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .scroll-bar {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: grow 2s ease-in-out infinite; transform-origin: top;
+    }
+    @keyframes grow { 0%{transform:scaleY(0);opacity:1} 60%{transform:scaleY(1);opacity:1} 100%{transform:scaleY(1);opacity:0} }
+
+    /* ── GLOW DIVIDER ── */
+    .glow-div {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(167,139,250,0.3) 35%, rgba(45,212,191,0.3) 65%, transparent 100%);
+    }
+
+    /* ── AREA SECTION ── */
+    .area-section { padding: 90px 0; position: relative; }
+    .area-section + .area-section { border-top: 1px solid var(--border); }
+    #python, #figma { background: var(--bg2); }
+    .area-inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+    .area-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 24px;
+      margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .area-icon-wrap {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 16px;
+    }
+    #javascript .area-icon-wrap { background: rgba(247,223,30,0.1); }
+    #python     .area-icon-wrap { background: rgba(77,171,247,0.1); }
+    #ads        .area-icon-wrap { background: rgba(45,212,191,0.1); }
+    #figma      .area-icon-wrap { background: rgba(167,139,250,0.1); }
+
+    .area-label {
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 2.5px; font-weight: 600; margin-bottom: 6px;
+    }
+    #javascript .area-label { color: var(--js); }
+    #python     .area-label { color: var(--py); }
+    #ads        .area-label { color: var(--ads); }
+    #figma      .area-label { color: var(--fig); }
+
+    .area-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700; color: white; letter-spacing: -0.8px; line-height: 1.2;
+    }
+    .area-desc {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.65;
+      max-width: 400px; margin-top: 10px;
+    }
+    .area-count {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem; font-weight: 700; letter-spacing: -2px;
+      opacity: 0.1; align-self: center; white-space: nowrap;
+    }
+    #javascript .area-count { color: var(--js); }
+    #python     .area-count { color: var(--py); }
+    #ads        .area-count { color: var(--ads); }
+    #figma      .area-count { color: var(--fig); }
+
+    /* ── PROJECT CARDS ── */
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
     }
-    .card {
-       background: #fff;
-       padding: 1.5rem;
-       border-radius: 10px;
-       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-       margin-bottom: 2rem; /* espaçamento entre os cards */
-    }
-    .title{
-        color: #ff00bf;
-    }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    }
-    .card h2 {
-      margin-top: 10;
-      color: #000000;
-    }
-    .card a {
-      color: #FF00E2;
+
+    /* card como <a> — reset de estilos de link */
+    a.proj-card {
       text-decoration: none;
-      font-weight: bold;
+      color: inherit;
+      display: flex;
     }
+
+    .proj-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 26px;
+      cursor: pointer; transition: all 0.35s cubic-bezier(0.23,1,0.32,1);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .proj-card::before {
+      content: ''; position: absolute; inset: 0;
+      opacity: 0; border-radius: 16px; transition: opacity 0.35s;
+    }
+    .proj-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.13);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .proj-card:hover::before { opacity: 1; }
+
+    #javascript .proj-card::before { background: radial-gradient(ellipse at 0% 0%, rgba(247,223,30,0.07), transparent 55%); }
+    #python     .proj-card::before { background: radial-gradient(ellipse at 0% 0%, rgba(77,171,247,0.07), transparent 55%); }
+    #ads        .proj-card::before { background: radial-gradient(ellipse at 0% 0%, rgba(45,212,191,0.07), transparent 55%); }
+    #figma      .proj-card::before { background: radial-gradient(ellipse at 0% 0%, rgba(167,139,250,0.08), transparent 55%); }
+
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .proj-status {
+      font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; padding: 3px 9px; border-radius: 100px;
+    }
+    .status-done { background: rgba(45,212,191,0.1); color: var(--ads); }
+    .status-wip  { background: rgba(247,223,30,0.1); color: #e8cc1a; }
+    .status-idea { background: rgba(255,255,255,0.05); color: var(--muted); }
+
+    /* ícone de link no canto */
+    .proj-link-icon {
+      font-size: 0.9rem; color: var(--muted);
+      transition: all 0.3s; line-height: 1; flex-shrink: 0;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .proj-link-icon .link-label {
+      font-size: 0.68rem; font-weight: 500; opacity: 0;
+      transform: translateX(-4px);
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .proj-card:hover .proj-link-icon { color: white; transform: translate(2px,-2px); }
+    .proj-card:hover .link-label { opacity: 1; transform: translateX(0); }
+
+    /* badge "sem link" */
+    .no-link-badge {
+      font-size: 0.65rem; color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(255,255,255,0.08);
+      border-radius: 6px; padding: 2px 8px;
+    }
+
+    .proj-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem; font-weight: 600; color: white; line-height: 1.3;
+      position: relative; z-index: 1;
+    }
+    .proj-desc {
+      font-size: 0.83rem; color: var(--muted); line-height: 1.65;
+      position: relative; z-index: 1; flex: 1;
+    }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; position: relative; z-index: 1; margin-top: 4px; }
+    .ptag { font-size: 0.7rem; padding: 3px 9px; border-radius: 6px; font-weight: 500; }
+    #javascript .ptag { background: rgba(247,223,30,0.09);  color: #e8cc1a; }
+    #python     .ptag { background: rgba(77,171,247,0.09);  color: #75b9f0; }
+    #ads        .ptag { background: rgba(45,212,191,0.09);  color: #2dd4bf; }
+    #figma      .ptag { background: rgba(167,139,250,0.09); color: #c4b5fd; }
+
+    /* ── TOOLTIP de onde colocar o link ── */
+    .proj-card[href="#LINK_AQUI"] .proj-link-icon,
+    .proj-card[href="#LINK_AQUI"]:hover .proj-link-icon {
+      transform: none;
+      color: rgba(255,255,255,0.15);
+    }
+
+    /* empty card */
+    .proj-card.empty {
+      border-style: dashed; border-color: rgba(255,255,255,0.08);
+      background: transparent; align-items: center; justify-content: center;
+      min-height: 160px; color: var(--muted); font-size: 0.84rem;
+      gap: 8px; cursor: default;
+    }
+    .proj-card.empty:hover { transform: none; border-color: rgba(255,255,255,0.14); box-shadow: none; }
+    .proj-card.empty .plus { font-size: 1.4rem; opacity: 0.4; }
+
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 2rem;
-      background: #f1f1f1;
-      font-size: 0.9rem;
-      color: #555;
+      border-top: 1px solid var(--border); padding: 32px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--muted); font-size: 0.8rem; flex-wrap: wrap; gap: 12px;
     }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: white; }
+    .footer-links { display: flex; gap: 20px; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.vis { opacity: 1; transform: none; }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-pills { display: none; }
+      .area-inner { padding: 0 20px; }
+      .area-count { display: none; }
+      .hero { padding: 80px 20px 60px; }
+      footer { padding: 24px 20px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://avatars.githubusercontent.com/u/216164405?v=4" alt="Foto de perfil">
-    <h1>Pérola Fontana Corchog</h1>
-    <p>Desenvolvedora</p>
-  </header>
 
-  <main id="projetos">
-    <section id="javascript"> 
-        <h2 class="title">Projetos em JavaScript</h2>
-        <div class="card"> 
-            <h2>Testes JavaScript</h2>
-            <p>Um site simples criado para testar funcionalidades do JavaScript, como: bhaskara, soma e subtração.</p>
-            <a href="https://github.com/perolafontana011/In-cio-Back-End" target="_blank">Ver no GitHub</a> 
-        </div>
+<nav id="nav">
+  <div class="nav-logo">Meu <em>Portfólio</em></div>
+  <div class="nav-pills">
+    <a href="#javascript">JS</a>
+    <a href="#python">Python</a>
+    <a href="#ads">ADS</a>
+    <a href="#figma">Figma</a>
+  </div>
+</nav>
 
-        <div class="card"> 
-          <h2>Variáveis</h2>
-          <p>Uso de variáveis.</p>
-          <a href="https://github.com/perolafontana011/Vari-veis" target="_blank">Ver no GitHub</a> 
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
+    <div class="avatar-ring">🎓</div>
+    <div class="hero-tag">
+      <span class="dot-live"></span>
+      Estudante de ADS
+    </div>
+    <!-- ✏️ Troque "Seu Nome Aqui" pelo seu nome real -->
+    <h1>Olá, eu sou<br><span class="grad">Pérola Fontana Corchog</span></h1>
+    <p class="hero-sub">
+      Estudante do <strong>3° ano Técnico em Desenvolvimento de Sistemas</strong>.<br>
+      Aqui você encontra meus projetos organizados por área.
+    </p>
+    <div class="area-chips">
+      <a href="#javascript" class="chip chip-js">⚡ JavaScript</a>
+      <a href="#python"     class="chip chip-py">🐍 Python</a>
+      <a href="#ads"        class="chip chip-ads">🏗️ ADS</a>
+      <a href="#figma"      class="chip chip-fig">✦ Figma</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
 
-        <div class="card"> 
-          <h2>Usando For</h2>
-          <p>Usando o for.</p>
-          <a href="https://github.com/perolafontana011/Usando-For" target="_blank">Ver no GitHub</a> 
-        </div>
+<div class="glow-div"></div>
 
-        <div class="card"> 
-          <h2>Usando Break</h2>
-          <p>Usando o break.</p>
-          <a href="https://github.com/perolafontana011/Usando-Break" target="_blank">Ver no GitHub</a> 
-        </div>
+<!-- ══════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════ -->
+<section class="area-section" id="javascript">
+  <div class="area-inner">
+    <div class="area-header reveal">
+      <div>
+        <div class="area-icon-wrap">⚡</div>
+        <div class="area-label">JavaScript</div>
+        <div class="area-title">Projetos em JavaScript</div>
+        <div class="area-desc">Aplicações web, interfaces interativas e lógica de programação com JS e seus ecossistemas.</div>
+      </div>
+      <div class="area-count">JS</div>
+    </div>
 
-        <div class="card"> 
-          <h2>Usando Brake Continue</h2>
-          <p>Usando o brake continue</p>
-          <a href="https://github.com/perolafontana011/Brake-Continue" target="_blank">Ver no GitHub</a> 
-        </div>
+    <div class="projects-grid">
 
-        <div class="card"> 
-          <h2>Objeto</h2>
-          <p>Fazendo um "perfil" de uma pessoa</p>
-          <a href="https://github.com/perolafontana011/Objeto" target="_blank">Ver no GitHub</a> 
+      <!-- ✏️ Coloque o link do projeto no href abaixo -->
+      <a class="proj-card reveal" href="https://github.com/perolafontana011/In-cio-Back-End" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-done">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
         </div>
+        <div class="proj-title">Testes JavaScript</div>
+        <div class="proj-desc">Um site simples criado para testar funcionalidades do JavaScript, como: bhaskara, soma e subtração.</div>
+        <div class="proj-tags">
+          <span class="ptag">HTML</span><span class="ptag"><span class="ptag">JavaScript</span>
+        </div>
+      </a>
 
-        <div class="card"> 
-          <h2>Filtrar</h2>
-          <p>Fazendo um filtro de pessoas.</p>
-          <a href="https://github.com/perolafontana011/Filtrar" target="_blank">Ver no GitHub</a> 
+      <!-- ✏️ Coloque o link do projeto no href abaixo -->
+      <a class="proj-card reveal" href="https://github.com/perolafontana011/Vari-veis" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-done">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
         </div>
+        <div class="proj-title">Variáveis</div>
+        <div class="proj-desc">Uso de variáveis.</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span>
+        </div>
+      </a>
+
+      <!-- ✏️ Coloque o link do projeto no href abaixo -->
+      <a class="proj-card reveal" href="https://github.com/perolafontana011/Usando-For" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Usando For</div>
+        <div class="proj-desc">Usando o for.</div>
+        <div class="proj-tags">
+          <span class="ptag">Fetch API</span><span class="ptag">Async/Await</span><span class="ptag">REST</span>
+        </div>
+      </a>
+
+    <a class="proj-card reveal" href="https://github.com/perolafontana011/Usando-Break" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Usando Break</div>
+        <div class="proj-desc">Usando o break.</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span>
+        </div>
+      </a>
+
+          <a class="proj-card reveal" href="https://github.com/perolafontana011/Usando-Break" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Usando Break</div>
+        <div class="proj-desc">Usando o break.</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span>
+        </div>
+      </a>
+
+     <a class="proj-card reveal" href="https://github.com/perolafontana011/Brake-Continue" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Usando Brake Continue</div>
+        <div class="proj-desc">Usando o brake continue</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span>
+        </div>
+      </a>
+
+    <a class="proj-card reveal" href="https://github.com/perolafontana011/Objeto" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Objeto</div>
+        <div class="proj-desc">Fazendo um "perfil" de uma pessoa</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span>
+        </div>
+      </a>
+
+    <a class="proj-card reveal" href="https://github.com/perolafontana011/Filtrar" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Filtrar</div>
+        <div class="proj-desc">Fazendo um filtro de pessoas.</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span>
+        </div>
+      </a>
+
+
+    <a class="proj-card reveal" href="https://perolafontana011.github.io/Pac-Man/index.html" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Pac-Man</div>
+        <div class="proj-desc">Joguinho do Pac-Man</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span><span class="ptag">HTML</span><span class="ptag">CSS</span>
+        </div>
+      </a>
+
+    <a class="proj-card reveal" href="https://github.com/perolafontana011/Usando-JSON" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Usando JSON</div>
+        <div class="proj-desc">Usando o JSON.</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span>
+        </div>
+      </a>
+
+    <a class="proj-card reveal" href="https://github.com/perolafontana011/Pessoas" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Pessoas</div>
+        <div class="proj-desc">Informações de pessoas</div>
+        <div class="proj-tags">
+          <span class="ptag">JavaScript</span>
+        </div>
+      </a>
       
-        <div class="card"> 
-          <h2>Pac-Man</h2>
-          <p>Joguinho do Pac-Man</p>
-          <a href="https://perolafontana011.github.io/Pac-Man/index.html" target="_blank">Ver no GitHub</a> 
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PYTHON
+     ══════════════════════════════ -->
+<section class="area-section" id="python">
+  <div class="area-inner">
+    <div class="area-header reveal">
+      <div>
+        <div class="area-icon-wrap">🐍</div>
+        <div class="area-label">Python</div>
+        <div class="area-title">Projetos em Python</div>
+        <div class="area-desc">Scripts, automações, análise de dados e algoritmos desenvolvidos nas aulas e por conta própria.</div>
+      </div>
+      <div class="area-count">PY</div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- ✏️ Coloque o link do projeto no href abaixo -->
+      <a class="proj-card reveal" href="https://github.com/seu-usuario/cadastro-python" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-done">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
         </div>
-
-        <div class="card"> 
-          <h2>Pessoas</h2>
-          <p>Informações de pessoas</p>
-          <a href="https://github.com/perolafontana011/Pessoas" target="_blank">Ver no GitHub</a> 
+        <div class="proj-title">Sistema de Cadastro em Terminal</div>
+        <div class="proj-desc">CRUD via terminal para cadastro de alunos com listas, dicionários e persistência em arquivos .txt.</div>
+        <div class="proj-tags">
+          <span class="ptag">Python</span><span class="ptag">Arquivos</span><span class="ptag">OOP</span>
         </div>
+      </a>
 
-        <div class="card"> 
-          <h2>Usando JSON</h2>
-          <p>Usando o JSON.</p>
-          <a href="https://github.com/perolafontana011/Usando-JSON" target="_blank">Ver no GitHub</a> 
+      <!-- ✏️ Coloque o link do projeto no href abaixo -->
+      <a class="proj-card reveal" href="https://github.com/seu-usuario/analise-dados" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-done">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
         </div>
-    </section>
+        <div class="proj-title">Analisador de Dados com Pandas</div>
+        <div class="proj-desc">Análise exploratória de um dataset real com estatísticas descritivas e gráficos gerados com Matplotlib.</div>
+        <div class="proj-tags">
+          <span class="ptag">Pandas</span><span class="ptag">Matplotlib</span><span class="ptag">CSV</span>
+        </div>
+      </a>
 
+      <!-- ✏️ Coloque o link do projeto no href abaixo -->
+      <a class="proj-card reveal" href="https://github.com/seu-usuario/bot-selenium" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-idea">Ideia</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Bot de Automação Web</div>
+        <div class="proj-desc">Automação de tarefas repetitivas no navegador com Selenium — preenchimento de formulários e coleta de dados.</div>
+        <div class="proj-tags">
+          <span class="ptag">Selenium</span><span class="ptag">Automação</span><span class="ptag">Web Scraping</span>
+        </div>
+      </a>
 
-    <section id="analise"> 
-      <h2 class="title">Análise e Projeto de Sistemas</h2>
-      <div class="card"> 
-          <h2>Propriedade Intelectual</h2>
-          <p>Uma apresentação falando sobre Propriedade Intelectual: o que é, qual importância e tópicos.</p>
-          <a href="https://gamma.app/docs/Propriedade-Intelectual-h8xw85239jqbdbc" target="_blank">Ver apresentação</a> 
+      <div class="proj-card empty reveal">
+        <span class="plus">＋</span>
+        <span>Seu próximo projeto aqui</span>
       </div>
 
-      <div class="card"> 
-        <h2>Projeto de agenda escolar</h2>
-        <p>Apresentação falando sobre um projeto de agenda escolar.</p>
-        <a href="https://gamma.app/docs/EduAgenda-A-Escola-Conectada-no-Futuro-h5m5iwh761n7as9" target="_blank">Ver apresentação</a> 
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ADS
+     ══════════════════════════════ -->
+<section class="area-section" id="ads">
+  <div class="area-inner">
+    <div class="area-header reveal">
+      <div>
+        <div class="area-icon-wrap">🏗️</div>
+        <div class="area-label">Análise e Desenvolvimento de Sistemas</div>
+        <div class="area-title">Projetos de ADS</div>
+        <div class="area-desc">Modelagem, banco de dados, documentação técnica e trabalhos acadêmicos da graduação, apresentações.</div>
+      </div>
+      <div class="area-count">ADS</div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- ✏️ Pode ser link do GitHub, Google Drive ou Notion -->
+      <a class="proj-card reveal" href="https://gamma.app/docs/A-Era-da-Eficiencia-Real-O-Estado-das-Startups-em-2026-osymsb24c7ch9uj" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-done">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Era da Eficiência Real</div>
+        <div class="proj-desc">Apresentação falando sobre startup que estão no topo em 2025-2026</div>
+        <div class="proj-tags">
+        </div>
+      </a>
+
+      <!-- ✏️ Pode ser link do GitHub, Google Drive ou Notion -->
+      <a class="proj-card reveal" href="https://gamma.app/docs/EduAgenda-A-Escola-Conectada-no-Futuro-h5m5iwh761n7as9" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-done">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Projeto de agenda escolar</div>
+        <div class="proj-desc">Apresentação falando sobre um projeto de agenda escolar.</div>
+        <div class="proj-tags">
+        </div>
+      </a>
+
+      <!-- ✏️ Pode ser link do GitHub, Google Drive ou Notion -->
+      <a class="proj-card reveal" href="https://gamma.app/docs/Propriedade-Intelectual-h8xw85239jqbdbc" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-wip">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver projeto</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Propriedade Intelectual</div>
+        <div class="proj-desc">Uma apresentação falando sobre Propriedade Intelectual: o que é, qual importância e tópicos.</div>
+        </div>
+      </a>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FIGMA
+     ══════════════════════════════ -->
+<section class="area-section" id="figma">
+  <div class="area-inner">
+    <div class="area-header reveal">
+      <div>
+        <div class="area-icon-wrap">✦</div>
+        <div class="area-label">Figma</div>
+        <div class="area-title">Projetos de Design</div>
+        <div class="area-desc">Protótipos, wireframes e interfaces criadas no Figma para projetos acadêmicos e pessoais.</div>
+      </div>
+      <div class="area-count">UI</div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- ✏️ No Figma: Share → Copy link → cole aqui -->
+      <a class="proj-card reveal" href="https://figma.com/file/LINK_DO_SEU_ARQUIVO" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-done">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver no Figma</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Wireframe de App Mobile</div>
+        <div class="proj-desc">Wireframes de baixa e alta fidelidade para um aplicativo de agenda acadêmica com fluxo de navegação completo.</div>
+        <div class="proj-tags">
+          <span class="ptag">Wireframe</span><span class="ptag">UX</span><span class="ptag">Mobile</span>
+        </div>
+      </a>
+
+      <!-- ✏️ No Figma: Share → Copy link → cole aqui -->
+      <a class="proj-card reveal" href="https://figma.com/file/LINK_DO_SEU_ARQUIVO" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-done">Concluído</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver no Figma</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Protótipo de Landing Page</div>
+        <div class="proj-desc">Design completo de uma landing page com componentes reutilizáveis, tipografia e paleta de cores definidas.</div>
+        <div class="proj-tags">
+          <span class="ptag">UI Design</span><span class="ptag">Prototipagem</span><span class="ptag">Components</span>
+        </div>
+      </a>
+
+      <!-- ✏️ No Figma: Share → Copy link → cole aqui -->
+      <a class="proj-card reveal" href="https://figma.com/file/LINK_DO_SEU_ARQUIVO" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-status status-idea">Ideia</span>
+          <span class="proj-link-icon">
+            <span class="link-label">Ver no Figma</span>↗
+          </span>
+        </div>
+        <div class="proj-title">Design System Pessoal</div>
+        <div class="proj-desc">Biblioteca de componentes com tokens de cor, espaçamento e tipografia para usar em futuros projetos.</div>
+        <div class="proj-tags">
+          <span class="ptag">Design System</span><span class="ptag">Tokens</span><span class="ptag">Auto Layout</span>
+        </div>
+      </a>
+
+      <div class="proj-card empty reveal">
+        <span class="plus">＋</span>
+        <span>Seu próximo projeto aqui</span>
       </div>
 
-      <div class="card"> 
-        <h2>Era da Eficiência Real</h2>
-        <p>Apresentação falando sobre startup que estão no topo em 2026-2025</p>
-        <a href="https://gamma.app/docs/A-Era-da-Eficiencia-Real-O-Estado-das-Startups-em-2026-osymsb24c7ch9uj" target="_blank">Ver apresentação</a> 
-      </div>
-  </section>
-  </main>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2026 Pérola - Todos os direitos reservados</p>
-  </footer>
+<div class="glow-div"></div>
 
-  <script>
+<!-- ✏️ Troque os links do footer pelos seus reais -->
+<footer>
+  <span>Feito por <strong style="color:var(--text)">Pérola Fontana Corchog</strong></span>
+  <div class="footer-links">
+    <a href="https://github.com/perolafontana011" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/seu-usuario" target="_blank">LinkedIn</a>
+    <a href="mailto:perolafontanacorchog@gmail.com">E-mail</a>
+  </div>
+</footer>
 
-    // Busca dinâmica de projetos
-    const searchInput = document.getElementById('search');
-    searchInput.addEventListener('keyup', () => {
-      const term = searchInput.value.toLowerCase();
-      document.querySelectorAll('.card').forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(term) ? 'block' : 'none';
-      });
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('vis'), (i % 4) * 90);
+        io.unobserve(e.target);
+      }
     });
-  </script>
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Active nav highlight
+  const sections = ['javascript','python','ads','figma'];
+  const navLinks  = document.querySelectorAll('.nav-pills a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(id => {
+      const s = document.getElementById(id);
+      if (s && window.scrollY >= s.offsetTop - 120) cur = id;
+    });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  });
+
+  // Card 3D tilt
+  document.querySelectorAll('.proj-card:not(.empty)').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  - 0.5) * 8;
+      const y = ((e.clientY - r.top)  / r.height - 0.5) * -8;
+      card.style.transform = `translateY(-4px) rotateX(${y}deg) rotateY(${x}deg)`;
+      card.style.transformStyle = 'preserve-3d';
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+</script>
 </body>
 </html>
-
-
-
