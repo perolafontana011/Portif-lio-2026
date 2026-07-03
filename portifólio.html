@@ -2,1420 +2,1427 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio | Pérola Fontana Corchog</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #09090e;
-      --bg2: #0f0f16;
-      --card: #13131a;
-      --border: rgba(255, 255, 255, 0.07);
-      --text: #ddddf0;
-      --muted: #6e6e8e;
-      --js: #f7df1e;
-      --py: #4dabf7;
-      --ads: #2dd4bf;
-      --fig: #a78bfa;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-    }
-
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #252535;
-      border-radius: 4px;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      backdrop-filter: blur(20px);
-      background: rgba(9, 9, 14, 0.7);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: white;
-    }
-
-    .nav-logo em {
-      font-style: normal;
-      color: var(--fig);
-    }
-
-    .nav-pills {
-      display: flex;
-      gap: 4px;
-    }
-
-    .nav-pills a {
-      text-decoration: none;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--muted);
-      padding: 6px 14px;
-      border-radius: 8px;
-      transition: all 0.2s;
-    }
-
-    .nav-pills a:hover,
-    .nav-pills a.active {
-      color: white;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 80px 24px 60px;
-      position: relative;
-    }
-
-    .hero-glow {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(ellipse 70% 55% at 50% 45%, rgba(167, 139, 250, 0.07) 0%, transparent 65%);
-    }
-
-    .hero-dots {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 75%);
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 680px;
-    }
-
-    .avatar-ring {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--fig), var(--ads));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 28px;
-      font-size: 2.4rem;
-      box-shadow: 0 0 0 6px rgba(167, 139, 250, 0.12), 0 0 40px rgba(167, 139, 250, 0.2);
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0)
-      }
-
-      50% {
-        transform: translateY(-8px)
-      }
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 5px 14px;
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-
-    .dot-live {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--ads);
-      animation: blink 2s infinite;
-    }
-
-    @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: 0.3
-      }
-    }
-
-    .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 700;
-      color: white;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 .grad {
-      background: linear-gradient(120deg, var(--fig) 0%, var(--ads) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 480px;
-      margin: 0 auto 36px;
-    }
-
-    .hero-sub strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .area-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 40px;
-    }
-
-    .chip {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 16px;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      border: 1px solid;
-      cursor: pointer;
-      transition: all 0.25s;
-      text-decoration: none;
-    }
-
-    .chip:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.2);
-    }
-
-    .chip-js {
-      color: var(--js);
-      border-color: rgba(247, 223, 30, 0.25);
-      background: rgba(247, 223, 30, 0.06);
-    }
-
-    .chip-py {
-      color: var(--py);
-      border-color: rgba(77, 171, 247, 0.25);
-      background: rgba(77, 171, 247, 0.06);
-    }
-
-    .chip-ads {
-      color: var(--ads);
-      border-color: rgba(45, 212, 191, 0.25);
-      background: rgba(45, 212, 191, 0.06);
-    }
-
-    .chip-fig {
-      color: var(--fig);
-      border-color: rgba(167, 139, 250, 0.25);
-      background: rgba(167, 139, 250, 0.06);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: var(--muted);
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .scroll-bar {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, var(--muted), transparent);
-      animation: grow 2s ease-in-out infinite;
-      transform-origin: top;
-    }
-
-    @keyframes grow {
-      0% {
-        transform: scaleY(0);
-        opacity: 1
-      }
-
-      60% {
-        transform: scaleY(1);
-        opacity: 1
-      }
-
-      100% {
-        transform: scaleY(1);
-        opacity: 0
-      }
-    }
-
-    /* ── GLOW DIVIDER ── */
-    .glow-div {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(167, 139, 250, 0.3) 35%, rgba(45, 212, 191, 0.3) 65%, transparent 100%);
-    }
-
-    /* ── AREA SECTION ── */
-    .area-section {
-      padding: 90px 0;
-      position: relative;
-    }
-
-    .area-section+.area-section {
-      border-top: 1px solid var(--border);
-    }
-
-    #python,
-    #figma {
-      background: var(--bg2);
-    }
-
-    .area-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    .area-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 48px;
-      flex-wrap: wrap;
-    }
-
-    .area-icon-wrap {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-    }
-
-    #javascript .area-icon-wrap {
-      background: rgba(247, 223, 30, 0.1);
-    }
-
-    #python .area-icon-wrap {
-      background: rgba(77, 171, 247, 0.1);
-    }
-
-    #ads .area-icon-wrap {
-      background: rgba(45, 212, 191, 0.1);
-    }
-
-    #figma .area-icon-wrap {
-      background: rgba(167, 139, 250, 0.1);
-    }
-
-    .area-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    #javascript .area-label {
-      color: var(--js);
-    }
-
-    #python .area-label {
-      color: var(--py);
-    }
-
-    #ads .area-label {
-      color: var(--ads);
-    }
-
-    #figma .area-label {
-      color: var(--fig);
-    }
-
-    .area-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 700;
-      color: white;
-      letter-spacing: -0.8px;
-      line-height: 1.2;
-    }
-
-    .area-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 400px;
-      margin-top: 10px;
-    }
-
-    .area-count {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: -2px;
-      opacity: 0.1;
-      align-self: center;
-      white-space: nowrap;
-    }
-
-    #javascript .area-count {
-      color: var(--js);
-    }
-
-    #python .area-count {
-      color: var(--py);
-    }
-
-    #ads .area-count {
-      color: var(--ads);
-    }
-
-    #figma .area-count {
-      color: var(--fig);
-    }
-
-    /* ── PROJECT CARDS ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
-    }
-
-    /* card como <a> — reset de estilos de link */
-    a.proj-card {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-    }
-
-    .proj-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 26px;
-      cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .proj-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      border-radius: 16px;
-      transition: opacity 0.35s;
-    }
-
-    .proj-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.13);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .proj-card:hover::before {
-      opacity: 1;
-    }
-
-    #javascript .proj-card::before {
-      background: radial-gradient(ellipse at 0% 0%, rgba(247, 223, 30, 0.07), transparent 55%);
-    }
-
-    #python .proj-card::before {
-      background: radial-gradient(ellipse at 0% 0%, rgba(77, 171, 247, 0.07), transparent 55%);
-    }
-
-    #ads .proj-card::before {
-      background: radial-gradient(ellipse at 0% 0%, rgba(45, 212, 191, 0.07), transparent 55%);
-    }
-
-    #figma .proj-card::before {
-      background: radial-gradient(ellipse at 0% 0%, rgba(167, 139, 250, 0.08), transparent 55%);
-    }
-
-    .proj-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .proj-status {
-      font-size: 0.68rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      padding: 3px 9px;
-      border-radius: 100px;
-    }
-
-    .status-done {
-      background: rgba(45, 212, 191, 0.1);
-      color: var(--ads);
-    }
-
-    .status-wip {
-      background: rgba(247, 223, 30, 0.1);
-      color: #e8cc1a;
-    }
-
-    .status-idea {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--muted);
-    }
-
-    /* ícone de link no canto */
-    .proj-link-icon {
-      font-size: 0.9rem;
-      color: var(--muted);
-      transition: all 0.3s;
-      line-height: 1;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .proj-link-icon .link-label {
-      font-size: 0.68rem;
-      font-weight: 500;
-      opacity: 0;
-      transform: translateX(-4px);
-      transition: all 0.25s;
-      white-space: nowrap;
-    }
-
-    .proj-card:hover .proj-link-icon {
-      color: white;
-      transform: translate(2px, -2px);
-    }
-
-    .proj-card:hover .link-label {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* badge "sem link" */
-    .no-link-badge {
-      font-size: 0.65rem;
-      color: rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px dashed rgba(255, 255, 255, 0.08);
-      border-radius: 6px;
-      padding: 2px 8px;
-    }
-
-    .proj-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: white;
-      line-height: 1.3;
-      position: relative;
-      z-index: 1;
-    }
-
-    .proj-desc {
-      font-size: 0.83rem;
-      color: var(--muted);
-      line-height: 1.65;
-      position: relative;
-      z-index: 1;
-      flex: 1;
-    }
-
-    .proj-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      position: relative;
-      z-index: 1;
-      margin-top: 4px;
-    }
-
-    .ptag {
-      font-size: 0.7rem;
-      padding: 3px 9px;
-      border-radius: 6px;
-      font-weight: 500;
-    }
-
-    #javascript .ptag {
-      background: rgba(247, 223, 30, 0.09);
-      color: #e8cc1a;
-    }
-
-    #python .ptag {
-      background: rgba(77, 171, 247, 0.09);
-      color: #75b9f0;
-    }
-
-    #ads .ptag {
-      background: rgba(45, 212, 191, 0.09);
-      color: #2dd4bf;
-    }
-
-    #figma .ptag {
-      background: rgba(167, 139, 250, 0.09);
-      color: #c4b5fd;
-    }
-
-    /* ── TOOLTIP de onde colocar o link ── */
-    .proj-card[href="#LINK_AQUI"] .proj-link-icon,
-    .proj-card[href="#LINK_AQUI"]:hover .proj-link-icon {
-      transform: none;
-      color: rgba(255, 255, 255, 0.15);
-    }
-
-    /* empty card */
-    .proj-card.empty {
-      border-style: dashed;
-      border-color: rgba(255, 255, 255, 0.08);
-      background: transparent;
-      align-items: center;
-      justify-content: center;
-      min-height: 160px;
-      color: var(--muted);
-      font-size: 0.84rem;
-      gap: 8px;
-      cursor: default;
-    }
-
-    .proj-card.empty:hover {
-      transform: none;
-      border-color: rgba(255, 255, 255, 0.14);
-      box-shadow: none;
-    }
-
-    .proj-card.empty .plus {
-      font-size: 1.4rem;
-      opacity: 0.4;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    footer a:hover {
-      color: white;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-
-    .reveal.vis {
-      opacity: 1;
-      transform: none;
-    }
-
-    @media (max-width: 700px) {
-      nav {
-        padding: 0 20px;
-      }
-
-      .nav-pills {
-        display: none;
-      }
-
-      .area-inner {
-        padding: 0 20px;
-      }
-
-      .area-count {
-        display: none;
-      }
-
-      .hero {
-        padding: 80px 20px 60px;
-      }
-
-      footer {
-        padding: 24px 20px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio | Pérola Fontana Corchog</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #09090e;
+            --bg2: #0f0f16;
+            --card: #13131a;
+            --border: rgba(255, 255, 255, 0.07);
+            --text: #ddddf0;
+            --muted: #6e6e8e;
+            --js: #f7df1e;
+            --py: #4dabf7;
+            --ads: #2dd4bf;
+            --fig: #a78bfa;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #252535;
+            border-radius: 4px;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            backdrop-filter: blur(20px);
+            background: rgba(9, 9, 14, 0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .nav-logo em {
+            font-style: normal;
+            color: var(--fig);
+        }
+
+        .nav-pills {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-pills a {
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--muted);
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-pills a:hover,
+        .nav-pills a.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 24px 60px;
+            position: relative;
+        }
+
+        .hero-glow {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse 70% 55% at 50% 45%, rgba(167, 139, 250, 0.07) 0%, transparent 65%);
+        }
+
+        .hero-dots {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 28px 28px;
+            mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 75%);
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+        }
+
+        .avatar-ring {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--fig), var(--ads));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 2.4rem;
+            box-shadow: 0 0 0 6px rgba(167, 139, 250, 0.12), 0 0 40px rgba(167, 139, 250, 0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-8px)
+            }
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 5px 14px;
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .dot-live {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--ads);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-weight: 700;
+            color: white;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 .grad {
+            background: linear-gradient(120deg, var(--fig) 0%, var(--ads) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto 36px;
+        }
+
+        .hero-sub strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .area-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .chip {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-decoration: none;
+        }
+
+        .chip:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+
+        .chip-js {
+            color: var(--js);
+            border-color: rgba(247, 223, 30, 0.25);
+            background: rgba(247, 223, 30, 0.06);
+        }
+
+        .chip-py {
+            color: var(--py);
+            border-color: rgba(77, 171, 247, 0.25);
+            background: rgba(77, 171, 247, 0.06);
+        }
+
+        .chip-ads {
+            color: var(--ads);
+            border-color: rgba(45, 212, 191, 0.25);
+            background: rgba(45, 212, 191, 0.06);
+        }
+
+        .chip-fig {
+            color: var(--fig);
+            border-color: rgba(167, 139, 250, 0.25);
+            background: rgba(167, 139, 250, 0.06);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--muted);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .scroll-bar {
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, var(--muted), transparent);
+            animation: grow 2s ease-in-out infinite;
+            transform-origin: top;
+        }
+
+        @keyframes grow {
+            0% {
+                transform: scaleY(0);
+                opacity: 1
+            }
+
+            60% {
+                transform: scaleY(1);
+                opacity: 1
+            }
+
+            100% {
+                transform: scaleY(1);
+                opacity: 0
+            }
+        }
+
+        /* ── GLOW DIVIDER ── */
+        .glow-div {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(167, 139, 250, 0.3) 35%, rgba(45, 212, 191, 0.3) 65%, transparent 100%);
+        }
+
+        /* ── AREA SECTION ── */
+        .area-section {
+            padding: 90px 0;
+            position: relative;
+        }
+
+        .area-section+.area-section {
+            border-top: 1px solid var(--border);
+        }
+
+        #python,
+        #figma {
+            background: var(--bg2);
+        }
+
+        .area-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .area-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .area-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        #javascript .area-icon-wrap {
+            background: rgba(247, 223, 30, 0.1);
+        }
+
+        #python .area-icon-wrap {
+            background: rgba(77, 171, 247, 0.1);
+        }
+
+        #ads .area-icon-wrap {
+            background: rgba(45, 212, 191, 0.1);
+        }
+
+        #figma .area-icon-wrap {
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .area-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        #javascript .area-label {
+            color: var(--js);
+        }
+
+        #python .area-label {
+            color: var(--py);
+        }
+
+        #ads .area-label {
+            color: var(--ads);
+        }
+
+        #figma .area-label {
+            color: var(--fig);
+        }
+
+        .area-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+        }
+
+        .area-desc {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 400px;
+            margin-top: 10px;
+        }
+
+        .area-count {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            opacity: 0.1;
+            align-self: center;
+            white-space: nowrap;
+        }
+
+        #javascript .area-count {
+            color: var(--js);
+        }
+
+        #python .area-count {
+            color: var(--py);
+        }
+
+        #ads .area-count {
+            color: var(--ads);
+        }
+
+        #figma .area-count {
+            color: var(--fig);
+        }
+
+        /* ── PROJECT CARDS ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        /* card como <a> — reset de estilos de link */
+        a.proj-card {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+        }
+
+        .proj-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 26px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .proj-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            border-radius: 16px;
+            transition: opacity 0.35s;
+        }
+
+        .proj-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.13);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .proj-card:hover::before {
+            opacity: 1;
+        }
+
+        #javascript .proj-card::before {
+            background: radial-gradient(ellipse at 0% 0%, rgba(247, 223, 30, 0.07), transparent 55%);
+        }
+
+        #python .proj-card::before {
+            background: radial-gradient(ellipse at 0% 0%, rgba(77, 171, 247, 0.07), transparent 55%);
+        }
+
+        #ads .proj-card::before {
+            background: radial-gradient(ellipse at 0% 0%, rgba(45, 212, 191, 0.07), transparent 55%);
+        }
+
+        #figma .proj-card::before {
+            background: radial-gradient(ellipse at 0% 0%, rgba(167, 139, 250, 0.08), transparent 55%);
+        }
+
+        .proj-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .proj-status {
+            font-size: 0.68rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 3px 9px;
+            border-radius: 100px;
+        }
+
+        .status-done {
+            background: rgba(45, 212, 191, 0.1);
+            color: var(--ads);
+        }
+
+        .status-wip {
+            background: rgba(247, 223, 30, 0.1);
+            color: #e8cc1a;
+        }
+
+        .status-idea {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--muted);
+        }
+
+        /* ícone de link no canto */
+        .proj-link-icon {
+            font-size: 0.9rem;
+            color: var(--muted);
+            transition: all 0.3s;
+            line-height: 1;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .proj-link-icon .link-label {
+            font-size: 0.68rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.25s;
+            white-space: nowrap;
+        }
+
+        .proj-card:hover .proj-link-icon {
+            color: white;
+            transform: translate(2px, -2px);
+        }
+
+        .proj-card:hover .link-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* badge "sem link" */
+        .no-link-badge {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 2px 8px;
+        }
+
+        .proj-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+        }
+
+        .proj-desc {
+            font-size: 0.83rem;
+            color: var(--muted);
+            line-height: 1.65;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .proj-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            position: relative;
+            z-index: 1;
+            margin-top: 4px;
+        }
+
+        .ptag {
+            font-size: 0.7rem;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        #javascript .ptag {
+            background: rgba(247, 223, 30, 0.09);
+            color: #e8cc1a;
+        }
+
+        #python .ptag {
+            background: rgba(77, 171, 247, 0.09);
+            color: #75b9f0;
+        }
+
+        #ads .ptag {
+            background: rgba(45, 212, 191, 0.09);
+            color: #2dd4bf;
+        }
+
+        #figma .ptag {
+            background: rgba(167, 139, 250, 0.09);
+            color: #c4b5fd;
+        }
+
+        /* ── TOOLTIP de onde colocar o link ── */
+        .proj-card[href="#LINK_AQUI"] .proj-link-icon,
+        .proj-card[href="#LINK_AQUI"]:hover .proj-link-icon {
+            transform: none;
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* empty card */
+        .proj-card.empty {
+            border-style: dashed;
+            border-color: rgba(255, 255, 255, 0.08);
+            background: transparent;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+            color: var(--muted);
+            font-size: 0.84rem;
+            gap: 8px;
+            cursor: default;
+        }
+
+        .proj-card.empty:hover {
+            transform: none;
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow: none;
+        }
+
+        .proj-card.empty .plus {
+            font-size: 1.4rem;
+            opacity: 0.4;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        footer a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.vis {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .nav-pills {
+                display: none;
+            }
+
+            .area-inner {
+                padding: 0 20px;
+            }
+
+            .area-count {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            footer {
+                padding: 24px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <nav id="nav">
-    <div class="nav-logo">Meu <em>Portfólio</em></div>
-    <div class="nav-pills">
-      <a href="#javascript">JS</a>
-      <a href="#mobile">Mobile</a>
-      <a href="#jogos">Jogos</a>
-      <a href="#python">Python</a>
-      <a href="#ads">ADS</a>
-      <a href="#figma">Figma</a>
-    </div>
-  </nav>
+    <nav id="nav">
+        <div class="nav-logo">Meu <em>Portfólio</em></div>
+        <div class="nav-pills">
+            <a href="#javascript">JS</a>
+            <a href="#mobile">Mobile</a>
+            <a href="#jogos">Jogos</a>
+            <a href="#python">Python</a>
+            <a href="#ads">ADS</a>
+            <a href="#figma">Figma</a>
+        </div>
+    </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-dots"></div>
-    <div class="hero-inner">
-      <div class="avatar-ring">🎓</div>
-      <div class="hero-tag">
-        <span class="dot-live"></span>
-        Estudante do 3° TÉC
-      </div>
-      <!-- ✏️ Troque "Seu Nome Aqui" pelo seu nome real -->
-      <h1>Olá, eu sou<br><span class="grad">Pérola Fontana Corchog</span></h1>
-      <p class="hero-sub">
-        Estudante do <strong>3° ano Técnico em Desenvolvimento de Sistemas</strong>.<br>
-        Aqui você encontra meus projetos organizados por área.
-      </p>
-      <div class="area-chips">
-        <a href="#javascript" class="chip chip-js">⚡ JavaScript</a>
-        <a href="#mobile" class="chip chip-py">📱 Mobile</a>
-        <a href="#jogos" class="chip chip-py">🎮 Jogos</a>
-        <a href="#python" class="chip chip-py">🐍 Python</a>
-        <a href="#ads" class="chip chip-ads">🏗️ ADS</a>
-        <a href="#figma" class="chip chip-fig">✦ Figma</a>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-bar"></div>
-    </div>
-  </section>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-dots"></div>
+        <div class="hero-inner">
+            <div class="avatar-ring">🎓</div>
+            <div class="hero-tag">
+                <span class="dot-live"></span>
+                Estudante do 3° TÉC
+            </div>
+            <!-- ✏️ Troque "Seu Nome Aqui" pelo seu nome real -->
+            <h1>Olá, eu sou<br><span class="grad">Pérola Fontana Corchog</span></h1>
+            <p class="hero-sub">
+                Estudante do <strong>3° ano Técnico em Desenvolvimento de Sistemas</strong>.<br>
+                Aqui você encontra meus projetos organizados por área.
+            </p>
+            <div class="area-chips">
+                <a href="#javascript" class="chip chip-js">⚡ JavaScript</a>
+                <a href="#mobile" class="chip chip-py">📱 Mobile</a>
+                <a href="#jogos" class="chip chip-py">🎮 Jogos</a>
+                <a href="#python" class="chip chip-py">🐍 Python</a>
+                <a href="#ads" class="chip chip-ads">🏗️ ADS</a>
+                <a href="#figma" class="chip chip-fig">✦ Figma</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-bar"></div>
+        </div>
+    </section>
 
-  <div class="glow-div"></div>
+    <div class="glow-div"></div>
 
-  <!-- ══════════════════════════════
+    <!-- ══════════════════════════════
      JAVASCRIPT
      ══════════════════════════════ -->
-  <section class="area-section" id="javascript">
-    <div class="area-inner">
-      <div class="area-header reveal">
-        <div>
-          <div class="area-icon-wrap">⚡</div>
-          <div class="area-label">JavaScript</div>
-          <div class="area-title">Projetos em JavaScript</div>
-          <div class="area-desc">Aplicações web, interfaces interativas e lógica de programação com JS e seus
-            ecossistemas.</div>
+    <section class="area-section" id="javascript">
+        <div class="area-inner">
+            <div class="area-header reveal">
+                <div>
+                    <div class="area-icon-wrap">⚡</div>
+                    <div class="area-label">JavaScript</div>
+                    <div class="area-title">Projetos em JavaScript</div>
+                    <div class="area-desc">Aplicações web, interfaces interativas e lógica de programação com JS e seus
+                        ecossistemas.</div>
+                </div>
+                <div class="area-count">JS</div>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- ✏️ Coloque o link do projeto no href abaixo -->
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/In-cio-Back-End/blob/main/teste.html" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Início Back-End</div>
+                    <div class="proj-desc">Um site simples criado para testar funcionalidades do JavaScript, como:
+                        bhaskara, soma
+                        e subtração.</div>
+                    <div class="proj-tags">
+                        <span class="ptag">HTML</span><span class="ptag"><span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <!-- ✏️ Coloque o link do projeto no href abaixo -->
+                <a class="proj-card reveal" href="https://github.com/perolafontana011/Vari-veis/blob/main/variaveis.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Variáveis</div>
+                    <div class="proj-desc">Uso de variáveis.</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <!-- ✏️ Coloque o link do projeto no href abaixo -->
+                <a class="proj-card reveal" href="https://github.com/perolafontana011/Usando-For/blob/main/usandofor.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Usando For</div>
+                    <div class="proj-desc">Usando o for.</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/Usando-Break/blob/main/usandobreak.js" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Usando Break</div>
+                    <div class="proj-desc">Usando o break.</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+
+                <a class="proj-card reveal" href="https://perolafontana011.github.io/Figurinha-da-copa/index.html"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">FutCards</div>
+                    <div class="proj-desc">Um site de coleção de figurinhas da copa.</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span><span class="ptag">HTML</span><span class="ptag">CSS</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/Brake-Continue/blob/main/brake_continue.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Usando Brake Continue</div>
+                    <div class="proj-desc">Usando o brake continue</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal" href="https://github.com/perolafontana011/Objeto/blob/main/objeto.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Objeto</div>
+                    <div class="proj-desc">Fazendo um "perfil" de uma pessoa</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal" href="https://github.com/perolafontana011/Filtrar/blob/main/filtrar.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Filtrar</div>
+                    <div class="proj-desc">Fazendo um filtro de pessoas.</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/Usando-JSON/blob/main/cliente.json" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Usando JSON</div>
+                    <div class="proj-desc">Usando o JSON.</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal" href="https://github.com/perolafontana011/Pessoas/blob/main/colchete.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Pessoas</div>
+                    <div class="proj-desc">Informações de pessoas</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/Selection-Sort/blob/main/selectionSort.js" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Selection Sort</div>
+                    <div class="proj-desc">Usando selection sort</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/Hello-World-HTML-JS/blob/main/helloworld.html"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Hello World</div>
+                    <div class="proj-desc">Site</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span><span class="ptag">HTML</span>
+                    </div>
+                </a>
+
+
+                <a class="proj-card reveal" href="https://github.com/perolafontana011/Livros/blob/main/leitura.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Lista Livros</div>
+                    <div class="proj-desc">Site em que usamos JSON e fizemos uma lista de leitura</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/INSERTION-SORT/blob/main/insertionSort.js" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Insertion Sort</div>
+                    <div class="proj-desc">Usando insertion sort</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/Conjuntos-n-mericos/blob/main/conjuntosnumericos.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Conjuntos Númericos</div>
+                    <div class="proj-desc">Para calcular</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/Opera-es-B-sicas/blob/main/operacoesbasicas.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Operações Básicas</div>
+                    <div class="proj-desc">Soma, subtração, divisão e multiplicação</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal" href="https://github.com/perolafontana011/Tri-ngulo/blob/main/triangulo.js"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Triângulo</div>
+                    <div class="proj-desc">Calcular o delta</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span>
+                    </div>
+                </a>
+
+                <a class="proj-card reveal" href="https://github.com/perolafontana011/Vendas/blob/main/vendas.html"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Vendas</div>
+                    <div class="proj-desc">Receita de compra</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span><span class="ptag">HTML</span>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="area-count">JS</div>
-      </div>
+    </section>
 
-      <div class="projects-grid">
+    <section class="area-section" id="mobile">
+        <div class="area-inner">
+            <div class="area-header reveal">
+                <div>
+                    <div class="area-icon-wrap">📱</div>
+                    <div class="area-label">Mobile</div>
+                    <div class="area-title">Projetos em Mobile</div>
+                    <div class="area-desc">Desenvolvimento de aplicativos</div>
+                </div>
+                <div class="area-count">MOBILE</div>
+            </div>
 
-        <!-- ✏️ Coloque o link do projeto no href abaixo -->
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/In-cio-Back-End/blob/main/teste.html"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Início Back-End</div>
-          <div class="proj-desc">Um site simples criado para testar funcionalidades do JavaScript, como: bhaskara, soma
-            e subtração.</div>
-          <div class="proj-tags">
-            <span class="ptag">HTML</span><span class="ptag"><span class="ptag">JavaScript</span>
-          </div>
-        </a>
+            <div class="projects-grid">
 
-        <!-- ✏️ Coloque o link do projeto no href abaixo -->
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Vari-veis/blob/main/variaveis.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Variáveis</div>
-          <div class="proj-desc">Uso de variáveis.</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
+                <!-- ✏️ Coloque o link do projeto no href abaixo -->
+                <a class="proj-card reveal"
+                    href="https://github.com/perolafontana011/In-cio-Back-End/blob/main/teste.html" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">App simples</div>
+                    <div class="proj-desc">
+                        <img src="Captura de tela 2026-04-23 114756.png"></img>
+                    </div>
+                    <div class="proj-tags">
+                        <span class="ptag">MOBILE</span><span class="ptag"><span class="ptag">SNACK EXPO</span>
+                    </div>
+                </a>
 
-        <!-- ✏️ Coloque o link do projeto no href abaixo -->
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Usando-For/blob/main/usandofor.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Usando For</div>
-          <div class="proj-desc">Usando o for.</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Usando-Break/blob/main/usandobreak.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Usando Break</div>
-          <div class="proj-desc">Usando o break.</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
+                <a class="proj-card reveal" href="" target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Trocar imagens</div>
+                    <div class="proj-desc">
+                        <img src="image.png"></img>
+                    </div>
+                    <div class="proj-tags">
+                        <span class="ptag">MOBILE</span><span class="ptag">SNACK</span><span
+                            class="ptag">NOTEBOOKLM</span>
+                    </div>
+                </a>
 
 
-        <a class="proj-card reveal" href="https://perolafontana011.github.io/Figurinha-da-copa/index.html"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">FutCards</div>
-          <div class="proj-desc">Um site de coleção de figurinhas da copa.</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span><span class="ptag">HTML</span><span class="ptag">CSS</span>
-          </div>
-        </a>
+                <a class="proj-card reveal" href="https://logical-easy-finance-flow.base44.app" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Easy Finance</div>
+                    <div class="proj-desc">
+                        <img src="Captura de tela 2026-06-24 115433.png"></img>
+                    </div>
+                    <div class="proj-tags">
+                        <span class="ptag">MOBILE</span><span class="ptag"><span class="ptag">BASE44</span>
+                    </div>
+                </a>
 
-        <a class="proj-card reveal"
-          href="https://github.com/perolafontana011/Brake-Continue/blob/main/brake_continue.js" target="_blank"
-          rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Usando Brake Continue</div>
-          <div class="proj-desc">Usando o brake continue</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
+                <a class="proj-card reveal" href="https://petconnect-21165607481.us-east1.run.app" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">PetConnect</div>
+                    <div class="proj-desc">
+                        <img src="Captura de tela 2026-06-25 080227.png"></img>
+                    </div>
+                    <div class="proj-tags">
+                        <span class="ptag">MOBILE</span><span class="ptag"><span class="ptag">GOOGLE AI STUDIO</span>
+                    </div>
+                </a>
 
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Objeto/blob/main/objeto.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Objeto</div>
-          <div class="proj-desc">Fazendo um "perfil" de uma pessoa</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Filtrar/blob/main/filtrar.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Filtrar</div>
-          <div class="proj-desc">Fazendo um filtro de pessoas.</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Usando-JSON/blob/main/cliente.json"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Usando JSON</div>
-          <div class="proj-desc">Usando o JSON.</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Pessoas/blob/main/colchete.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Pessoas</div>
-          <div class="proj-desc">Informações de pessoas</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Selection-Sort/blob/main/selectionSort.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Selection Sort</div>
-          <div class="proj-desc">Usando selection sort</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal"
-          href="https://github.com/perolafontana011/Hello-World-HTML-JS/blob/main/helloworld.html" target="_blank"
-          rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Hello World</div>
-          <div class="proj-desc">Site</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span><span class="ptag">HTML</span>
-          </div>
-        </a>
-
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Livros/blob/main/leitura.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Lista Livros</div>
-          <div class="proj-desc">Site em que usamos JSON e fizemos uma lista de leitura</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/INSERTION-SORT/blob/main/insertionSort.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Insertion Sort</div>
-          <div class="proj-desc">Usando insertion sort</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal"
-          href="https://github.com/perolafontana011/Conjuntos-n-mericos/blob/main/conjuntosnumericos.js" target="_blank"
-          rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Conjuntos Númericos</div>
-          <div class="proj-desc">Para calcular</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal"
-          href="https://github.com/perolafontana011/Opera-es-B-sicas/blob/main/operacoesbasicas.js" target="_blank"
-          rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Operações Básicas</div>
-          <div class="proj-desc">Soma, subtração, divisão e multiplicação</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Tri-ngulo/blob/main/triangulo.js"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Triângulo</div>
-          <div class="proj-desc">Calcular o delta</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/Vendas/blob/main/vendas.html"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Vendas</div>
-          <div class="proj-desc">Receita de compra</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span><span class="ptag">HTML</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="area-section" id="mobile">
-    <div class="area-inner">
-      <div class="area-header reveal">
-        <div>
-          <div class="area-icon-wrap">📱</div>
-          <div class="area-label">Mobile</div>
-          <div class="area-title">Projetos em Mobile</div>
-          <div class="area-desc">Desenvolvimento de aplicativos</div>
+                <a class="proj-card reveal" href="https://perolafontana011.github.io/EduQuest/index.html"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">EduQuest/div>
+                        <div class="proj-desc"> App gamificado.
+                            <img src="Captura de tela 2026-07-03 075745.png"></img>
+                        </div>
+                        <div class="proj-tags">
+                            <span class="ptag">MOBILE</span><span class="ptag"><span class="ptag">DEEPSEEK</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="area-count">MOBILE</div>
-      </div>
+    </section>
 
-      <div class="projects-grid">
+    <section class="area-section" id="jogos">
+        <div class="area-inner">
+            <div class="area-header reveal">
+                <div>
+                    <div class="area-icon-wrap">🎮</div>
+                    <div class="area-label">Jogos</div>
+                    <div class="area-title">Jogos</div>
+                    <div class="area-desc">Desenvolvimento de jogos</div>
+                </div>
+                <div class="area-count">Jogos</div>
+            </div>
 
-        <!-- ✏️ Coloque o link do projeto no href abaixo -->
-        <a class="proj-card reveal" href="https://github.com/perolafontana011/In-cio-Back-End/blob/main/teste.html"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">App simples</div>
-          <div class="proj-desc">
-            <img src="Captura de tela 2026-04-23 114756.png"></img>
-          </div>
-          <div class="proj-tags">
-            <span class="ptag">MOBILE</span><span class="ptag"><span class="ptag">SNACK EXPO</span>
-          </div>
-        </a>
+            <div class="projects-grid">
 
-        <a class="proj-card reveal" href=""
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Trocar imagens</div>
-          <div class="proj-desc">
-            <img src="image.png"></img>
-          </div>
-          <div class="proj-tags">
-            <span class="ptag">MOBILE</span><span class="ptag">SNACK</span><span class="ptag">NOTEBOOKLM</span>
-          </div>
-        </a>
+                <!-- ✏️ Coloque o link do projeto no href abaixo -->
+                <a class="proj-card reveal" href="https://unicode-quest-hub.base44.app" target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Jogo de Programação</div>
+                    <div class="proj-desc">
+                        <img src="Captura de tela 2026-06-18 081511.png"></img>
+                    </div>
+                    <div class="proj-tags">
+                        <span class="ptag">Google Ai Studio</span>
+                    </div>
+                </a>
 
+                <a class="proj-card reveal" href="https://perolafontana011.github.io/Pac-Man/index.html" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Pac-Man</div>
+                    <div class="proj-desc">Joguinho do Pac-Man</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span><span class="ptag">HTML</span><span class="ptag">CSS</span>
+                    </div>
+                </a>
 
-        <a class="proj-card reveal" href="https://logical-easy-finance-flow.base44.app"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Easy Finance</div>
-          <div class="proj-desc">
-            <img src="Captura de tela 2026-06-24 115433.png"></img>
-          </div>
-          <div class="proj-tags">
-            <span class="ptag">MOBILE</span><span class="ptag"><span class="ptag">BASE44</span>
-          </div>
-        </a>
-
-    <a class="proj-card reveal" href="https://perolafontana011.github.io/EduQuest/index.html"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">EduQuest/div>
-          <div class="proj-desc"> App gamificado.
-            <img src="Captura de tela 2026-07-03 075745.png"></img>
-          </div>
-          <div class="proj-tags">
-            <span class="ptag">MOBILE</span><span class="ptag"><span class="ptag">DEEPSEEK</span>
-          </div>
-        </a>
-
-  <a class="proj-card reveal" href="https://petconnect-21165607481.us-east1.run.app"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">PetConnect</div>
-          <div class="proj-desc">
-            <img src="Captura de tela 2026-06-25 080227.png"></img>
-          </div>
-          <div class="proj-tags">
-            <span class="ptag">MOBILE</span><span class="ptag"><span class="ptag">GOOGLE AI STUDIO</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="area-section" id="jogos">
-    <div class="area-inner">
-      <div class="area-header reveal">
-        <div>
-          <div class="area-icon-wrap">🎮</div>
-          <div class="area-label">Jogos</div>
-          <div class="area-title">Jogos</div>
-          <div class="area-desc">Desenvolvimento de jogos</div>
+                <a class="proj-card reveal" href="https://zen-sudoku-beats.base44.app" target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Sudoku</div>
+                    <div class="proj-desc">Sudoku para relaxar</div>
+                    <div class="proj-tags">
+                        <span class="ptag">JavaScript</span><span class="ptag">HTML</span><span class="ptag">CSS</span>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="area-count">Jogos</div>
-      </div>
+    </section>
 
-      <div class="projects-grid">
-
-        <!-- ✏️ Coloque o link do projeto no href abaixo -->
-        <a class="proj-card reveal" href="https://unicode-quest-hub.base44.app"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Jogo de Programação</div>
-          <div class="proj-desc">
-            <img src="Captura de tela 2026-06-18 081511.png"></img>
-          </div>
-          <div class="proj-tags">
-            <span class="ptag">Google Ai Studio</span>
-          </div>
-        </a>
-
-      <a class="proj-card reveal" href="https://perolafontana011.github.io/Pac-Man/index.html" target="_blank"
-          rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Pac-Man</div>
-          <div class="proj-desc">Joguinho do Pac-Man</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span><span class="ptag">HTML</span><span class="ptag">CSS</span>
-          </div>
-        </a>
-
-        <a class="proj-card reveal" href="https://zen-sudoku-beats.base44.app" target="_blank"
-          rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Sudoku</div>
-          <div class="proj-desc">Sudoku para relaxar</div>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span><span class="ptag">HTML</span><span class="ptag">CSS</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════
+    <!-- ══════════════════════════════
      ADS
      ══════════════════════════════ -->
-  <section class="area-section" id="ads">
-    <div class="area-inner">
-      <div class="area-header reveal">
-        <div>
-          <div class="area-icon-wrap">🏗️</div>
-          <div class="area-label">Análise e Desenvolvimento de Sistemas</div>
-          <div class="area-title">Projetos de ADS</div>
-          <div class="area-desc">Modelagem, banco de dados, documentação técnica e trabalhos acadêmicos da graduação,
-            apresentações.</div>
-        </div>
-        <div class="area-count">ADS</div>
-      </div>
+    <section class="area-section" id="ads">
+        <div class="area-inner">
+            <div class="area-header reveal">
+                <div>
+                    <div class="area-icon-wrap">🏗️</div>
+                    <div class="area-label">Análise e Desenvolvimento de Sistemas</div>
+                    <div class="area-title">Projetos de ADS</div>
+                    <div class="area-desc">Modelagem, banco de dados, documentação técnica e trabalhos acadêmicos da
+                        graduação,
+                        apresentações.</div>
+                </div>
+                <div class="area-count">ADS</div>
+            </div>
 
-      <div class="projects-grid">
-        <a class="proj-card reveal"
-          href="https://gamma.app/docs/A-Era-da-Eficiencia-Real-O-Estado-das-Startups-em-2026-osymsb24c7ch9uj"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Era da Eficiência Real</div>
-          <div class="proj-desc">Apresentação falando sobre startup que estão no topo em 2025-2026</div>
-          <span class="ptag">GAMMA</span>
-        </a>
+            <div class="projects-grid">
+                <a class="proj-card reveal"
+                    href="https://gamma.app/docs/A-Era-da-Eficiencia-Real-O-Estado-das-Startups-em-2026-osymsb24c7ch9uj"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Era da Eficiência Real</div>
+                    <div class="proj-desc">Apresentação falando sobre startup que estão no topo em 2025-2026</div>
+                    <span class="ptag">GAMMA</span>
+                </a>
 
-        <a class="proj-card reveal" href="https://gamma.app/docs/EduAgenda-A-Escola-Conectada-no-Futuro-h5m5iwh761n7as9"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Projeto de agenda escolar</div>
-          <div class="proj-desc">Apresentação falando sobre um projeto de agenda escolar.</div>
-          <span class="ptag">GAMMA</span>
-        </a>
+                <a class="proj-card reveal"
+                    href="https://gamma.app/docs/EduAgenda-A-Escola-Conectada-no-Futuro-h5m5iwh761n7as9" target="_blank"
+                    rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Projeto de agenda escolar</div>
+                    <div class="proj-desc">Apresentação falando sobre um projeto de agenda escolar.</div>
+                    <span class="ptag">GAMMA</span>
+                </a>
 
-        <a class="proj-card reveal" href="https://gamma.app/docs/Propriedade-Intelectual-h8xw85239jqbdbc"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-wip">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Propriedade Intelectual</div>
-          <div class="proj-desc">Uma apresentação falando sobre Propriedade Intelectual: o que é, qual importância e
-            tópicos.</div>
-          <span class="ptag">GAMMA</span>
-        </a>
+                <a class="proj-card reveal" href="https://gamma.app/docs/Propriedade-Intelectual-h8xw85239jqbdbc"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-wip">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Propriedade Intelectual</div>
+                    <div class="proj-desc">Uma apresentação falando sobre Propriedade Intelectual: o que é, qual
+                        importância e
+                        tópicos.</div>
+                    <span class="ptag">GAMMA</span>
+                </a>
 
-        <a class="proj-card reveal"
-          href="https://gamma.app/docs/EduAgenda-Inteligencia-e-Conectividade-para-a-Gestao-Escolar-i3nv94ormd5iwny?mode=doc"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Projeto de agenda escolar — Gestão</div>
-          <div class="proj-desc">Apresentação falando sobre um projeto de agenda escolar.</div>
-          <span class="ptag">GAMMA</span>
-        </a>
+                <a class="proj-card reveal"
+                    href="https://gamma.app/docs/EduAgenda-Inteligencia-e-Conectividade-para-a-Gestao-Escolar-i3nv94ormd5iwny?mode=doc"
+                    target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Projeto de agenda escolar — Gestão</div>
+                    <div class="proj-desc">Apresentação falando sobre um projeto de agenda escolar.</div>
+                    <span class="ptag">GAMMA</span>
+                </a>
 
-        <a class="proj-card reveal"
-          href="As_Melhores_IAs_em_2026.mp4"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Análise sobre as IA's em 2026</div>
-          <div class="proj-desc">Pesquisa sobre as IA's que resolvam os seguintes problemas: IA's para textos (livros / redação); IA's para Vídeos semi-profissionais / profissionais; IA's para Audio; IA's para Músicas (criação); IA's para Filminhos; IA's para PROGRAMAÇÃO</div>
-          <span class="ptag">NOTEBOOKLM</span>
-        </a>
+                <a class="proj-card reveal" href="As_Melhores_IAs_em_2026.mp4" target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Análise sobre as IA's em 2026</div>
+                    <div class="proj-desc">Pesquisa sobre as IA's que resolvam os seguintes problemas: IA's para textos
+                        (livros / redação); IA's para Vídeos semi-profissionais / profissionais; IA's para Audio; IA's
+                        para Músicas (criação); IA's para Filminhos; IA's para PROGRAMAÇÃO</div>
+                    <span class="ptag">NOTEBOOKLM</span>
+                </a>
 
-        <a class="proj-card reveal"
-          href="O_Robô_Educacional.mp4"
-          target="_blank" rel="noopener">
-          <div class="proj-top">
-            <span class="proj-status status-done">Concluído</span>
-            <span class="proj-link-icon">
-              <span class="link-label">Ver projeto</span>↗
-            </span>
-          </div>
-          <div class="proj-title">Análise sobre o trabalho dos alunos do 1° ano</div>
-          <div class="proj-desc">Análise</div>
-          <span class="ptag">NOTEBOOKLM</span>
-        </a>
+                <a class="proj-card reveal" href="O_Robô_Educacional.mp4" target="_blank" rel="noopener">
+                    <div class="proj-top">
+                        <span class="proj-status status-done">Concluído</span>
+                        <span class="proj-link-icon">
+                            <span class="link-label">Ver projeto</span>↗
+                        </span>
+                    </div>
+                    <div class="proj-title">Análise sobre o trabalho dos alunos do 1° ano</div>
+                    <div class="proj-desc">Análise</div>
+                    <span class="ptag">NOTEBOOKLM</span>
+                </a>
 
-      </div>
-  </section>
+            </div>
+    </section>
 
-  <!-- ══════════════════════════════
+    <!-- ══════════════════════════════
      FIGMA
      ══════════════════════════════ -->
-  </div>
-  </div>
-  </section>
-
-  <div class="glow-div"></div>
-
-  <!-- ✏️ Troque os links do footer pelos seus reais -->
-  <footer>
-    <span>Feito por <strong style="color:var(--text)">Pérola Fontana Corchog</strong></span>
-    <div class="footer-links">
-      <a href="https://github.com/perolafontana011" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/p%C3%A9rola-fontana-corchog-79807530a/" target="_blank">LinkedIn</a>
-      <a href="mailto:perolafontanacorchog@gmail.com">E-mail</a>
     </div>
-  </footer>
+    </div>
+    </section>
 
-  <script>
-    // Reveal on scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('vis'), (i % 4) * 90);
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    <div class="glow-div"></div>
 
-    // Active nav highlight
-    const sections = ['javascript', 'python', 'ads', 'figma'];
-    const navLinks = document.querySelectorAll('.nav-pills a');
-    window.addEventListener('scroll', () => {
-      let cur = '';
-      sections.forEach(id => {
-        const s = document.getElementById(id);
-        if (s && window.scrollY >= s.offsetTop - 120) cur = id;
-      });
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
-    });
+    <!-- ✏️ Troque os links do footer pelos seus reais -->
+    <footer>
+        <span>Feito por <strong style="color:var(--text)">Pérola Fontana Corchog</strong></span>
+        <div class="footer-links">
+            <a href="https://github.com/perolafontana011" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/p%C3%A9rola-fontana-corchog-79807530a/" target="_blank">LinkedIn</a>
+            <a href="mailto:perolafontanacorchog@gmail.com">E-mail</a>
+        </div>
+    </footer>
 
-    // Card 3D tilt
-    document.querySelectorAll('.proj-card:not(.empty)').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width - 0.5) * 8;
-        const y = ((e.clientY - r.top) / r.height - 0.5) * -8;
-        card.style.transform = `translateY(-4px) rotateX(${y}deg) rotateY(${x}deg)`;
-        card.style.transformStyle = 'preserve-3d';
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    });
-  </script>
+    <script>
+        // Reveal on scroll
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('vis'), (i % 4) * 90);
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // Active nav highlight
+        const sections = ['javascript', 'python', 'ads', 'figma'];
+        const navLinks = document.querySelectorAll('.nav-pills a');
+        window.addEventListener('scroll', () => {
+            let cur = '';
+            sections.forEach(id => {
+                const s = document.getElementById(id);
+                if (s && window.scrollY >= s.offsetTop - 120) cur = id;
+            });
+            navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+        });
+
+        // Card 3D tilt
+        document.querySelectorAll('.proj-card:not(.empty)').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const x = ((e.clientX - r.left) / r.width - 0.5) * 8;
+                const y = ((e.clientY - r.top) / r.height - 0.5) * -8;
+                card.style.transform = `translateY(-4px) rotateX(${y}deg) rotateY(${x}deg)`;
+                card.style.transformStyle = 'preserve-3d';
+            });
+            card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+        });
+    </script>
 </body>
 
 </html>
